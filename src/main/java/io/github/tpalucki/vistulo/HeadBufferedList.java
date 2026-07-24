@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+// todo this store could be further improved by introducing layered tail instead of single one
 interface IntegerStore {
     void add(Integer value);
 
@@ -41,7 +42,7 @@ public class HeadBufferedList implements IntegerStore {
         if (n < head.size()) {
             head.remove(n);
         }
-        if (n > head.size() &&
+        if (n >= head.size() &&
                 n < head.size() + tail.size()) {
             tail.remove(n - head.size());
         }

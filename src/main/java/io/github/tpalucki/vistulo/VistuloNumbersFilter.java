@@ -1,6 +1,5 @@
 package io.github.tpalucki.vistulo;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -25,16 +24,11 @@ public class VistuloNumbersFilter {
             if (current == 0) {
                 continue;
             }
-
-            // current between -255, 255, so most operations will happen in that head collection
             if (current < 0) {
                 outputProcessed.add(current);
             }
             if (current > 0) {
-//                if (outputProcessed.size() >= current) { // TODO not needed as it's supported in tail
-                    // remove only if enough elements
-                    outputProcessed.remove(current - 1);
-//                }
+                outputProcessed.remove(current - 1);
             }
         }
 
