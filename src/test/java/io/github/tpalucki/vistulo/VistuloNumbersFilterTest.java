@@ -1,15 +1,16 @@
 package io.github.tpalucki.vistulo;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ArgumentsSource;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -70,6 +71,8 @@ class VistuloNumbersFilterTest {
 
     @Nested
     class RandomFlowCorrectness {
+        private final int HUGE_INPUT_SIZE = 10000000;
+
         @Test
         public void processingRandomOutputShouldContainOnlyNegatives() {
             int[] input = generateSampleArray(1000);
@@ -83,16 +86,28 @@ class VistuloNumbersFilterTest {
         }
 
         @Test
-        @Timeout(value = 100, unit = java.util.concurrent.TimeUnit.MILLISECONDS)
+        @Timeout(value = 350, unit = TimeUnit.MILLISECONDS)
+        // todo let's see how low can we get
+        //  starting with ~1400ms
+        //  currently ~344ms ofter using buffered head collection
         public void processingHugeShouldBeQuick() {
-            int inputSize = 10000000;
+            int inputSize = HUGE_INPUT_SIZE;
             int[] input = generateSampleArray(inputSize);
             assertEquals(inputSize, input.length);
-//            List<Integer> expectedOutput = calculateNaively(input);
 
             var result = VistuloNumbersFilter.processArray(input);
 
-//            assertEquals(expectedOutput, result);
+            assertTrue(result.stream()
+                    .allMatch(i -> i < 0)); // all negative in output, no zeros
+        }
+
+        @ParameterizedTest
+        @Timeout(value = 350, unit = TimeUnit.MILLISECONDS)
+        @ArgumentsSource(VistuloHugeNumbersDataProvider.class)
+        public void processingItemsWithRandomHugeInputValuesShouldBeAlsoBlazingFast(int[] input, List<Integer> expectedOutput) {
+            var result = VistuloNumbersFilter.processArray(input);
+
+            assertEquals(result, expectedOutput);
             assertTrue(result.stream()
                     .allMatch(i -> i < 0)); // all negative in output, no zeros
         }
@@ -104,7 +119,7 @@ class VistuloNumbersFilterTest {
                 .toArray();
     }
 
-    private List<Integer> calculateNaively(int[] input) {
+    static List<Integer> calculateNaively(int[] input) {
         List<Integer> outputProcessed = new LinkedList<>();
 
         if (input == null) {

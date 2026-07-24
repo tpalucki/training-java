@@ -2,7 +2,6 @@ package io.github.tpalucki.vistulo;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Interview exercise for Vistulo Trading Senior Software Engineer
@@ -16,26 +15,29 @@ import java.util.concurrent.ThreadLocalRandom;
 public class VistuloNumbersFilter {
 
     public static List<Integer> processArray(int[] input) {
-        List<Integer> outputProcessed = new LinkedList<>();
+        IntegerStore outputProcessed = new HeadBufferedList(256);
 
         if (input == null) {
-            return outputProcessed;
+            return outputProcessed.toList();
         }
+
         for (int current : input) {
             if (current == 0) {
                 continue;
             }
+
+            // current between -255, 255, so most operations will happen in that head collection
             if (current < 0) {
                 outputProcessed.add(current);
             }
             if (current > 0) {
-                if (outputProcessed.size() >= current) {
+//                if (outputProcessed.size() >= current) { // TODO not needed as it's supported in tail
                     // remove only if enough elements
                     outputProcessed.remove(current - 1);
-                }
+//                }
             }
         }
 
-        return outputProcessed;
+        return outputProcessed.toList();
     }
 }
