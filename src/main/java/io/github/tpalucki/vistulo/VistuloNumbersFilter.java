@@ -15,18 +15,6 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class VistuloNumbersFilter {
 
-//    public static void main(String[] args) {
-//        int[] input = generateSampleArray();
-//        List<Integer> outputProcessed = processArray(input);
-//        System.out.println(outputProcessed);
-//    }
-
-    private static int[] generateSampleArray() {
-        return ThreadLocalRandom.current()
-                .ints(100, -255, 256)
-                .toArray();
-    }
-
     public static List<Integer> processArray(int[] input) {
         List<Integer> outputProcessed = new LinkedList<>();
 
