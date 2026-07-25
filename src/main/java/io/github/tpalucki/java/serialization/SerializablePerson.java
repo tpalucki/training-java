@@ -29,7 +29,7 @@ public class SerializablePerson implements java.io.Serializable {
                 '}';
     }
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         SerializablePerson person = new SerializablePerson("Tomasz", "Pałucki", 28);
         FileOutputStream fileOutputStream;
         try {

@@ -1,14 +1,11 @@
 package io.github.tpalucki.java.streams;
 
 import java.util.*;
-import java.util.function.Function;
 import java.util.stream.*;
-
-import static java.util.stream.Collectors.toList;
 
 class StreamsUsageExample {
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         var stream = Stream.of(1, 2, 3, 4, 5, 12, 645, 2, 1, 422, 23, 0);
 
         streamIterator(stream);
@@ -92,7 +89,7 @@ class StreamsUsageExample {
         // how to build
         var intStream = IntStream.of(1, 2, 3, 4);
 
-        var longStream = java.util.stream.LongStream.of(1L, 2L, 3L);
+        var longStream = LongStream.of(1L, 2L, 3L);
 
         // convert to boxed types
         Stream<Long> longBoxedStream = longStream.boxed();

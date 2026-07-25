@@ -17,7 +17,7 @@ public class MyCollections {
         // 3. wypisz wszystkie elementy listy
         listOfStrings.stream().forEach(System.out::println);
         //lub
-        listOfStrings.forEach((String s) -> System.out.println(s));
+        listOfStrings.forEach((String s) -> IO.println(s));
 
         // 4. zmodyfikuj kazdy element listy
         System.out.println("Zadanie 4 ------------");

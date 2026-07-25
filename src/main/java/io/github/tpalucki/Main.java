@@ -1,5 +1,10 @@
 package io.github.tpalucki;
 
+import io.github.tpalucki.java.concurrency.ToBeInterruptedRunnable;
+import io.github.tpalucki.java.concurrency.WaitTwoSecondsRunnable;
+
+import java.util.concurrent.Executor;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -12,58 +17,55 @@ public class Main {
 
         // trying to create abstract class
 //        Pizza pizza = new Pizza();
-
     }
 
 //    public static void main(String[] args) {
 //        System.out.println("Main started");
-//        // zadanie 1 - sprawdzmy cos ię dzieje gdy wyślemy interrupted od działającego wątku. Czy zostanie przerwany, czy będzie dział dalej.
-////        Thread t1 = new Thread(new ToBeInterruptedRunnable());
-////        t1.start();
-////
-////        Thread.sleep(2000);
-////
-////        t1.interrupt();
-//
-//        // zadanie 2 - jak działają joiny na wątkach
-//        // startujemy 1 wątek, i joinujemy obecny aż się tamten zakończy
-////        Thread toBeJoined = new Thread(new WaitTwoSecondsRunnable());
-////        toBeJoined.start();
-////        // magic
-////        try {
-////            toBeJoined.join();
-////        } catch (InterruptedException e) {
-////            e.printStackTrace();
-////        }
-////        System.out.println("toBeJoined finished, so here we go");
-//
+    // zadanie 1 - sprawdzmy cos ię dzieje gdy wyślemy interrupted od działającego wątku. Czy zostanie przerwany, czy będzie dział dalej.
+//        Thread t1 = new Thread(new ToBeInterruptedRunnable());
+//        Thread t1 = Thread.ofVirtual()
+//                .start(new ToBeInterruptedRunnable());
+//        Thread.sleep(2000);
+//        t1.interrupt();
+
+    // zadanie 2 - jak działają joiny na wątkach
+    // startujemy 1 wątek, i joinujemy obecny aż się tamten zakończy
+//        Thread toBeJoined = new Thread(new WaitTwoSecondsRunnable());
+//        toBeJoined.start();
+//        // magic
+//        try {
+//            toBeJoined.join();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println("toBeJoined finished, so here we go");
+
 //        // zadanie 3 - producer, consumer
-////        Drop drop = new Drop();
-////        (new Thread(new Producer(drop))).start();
-////        (new Thread(new Consumer(drop))).start();
+//        Drop drop = new Drop();
+//        (new Thread(new Producer(drop))).start();
+//        (new Thread(new Consumer(drop))).start();
+
+//        zadanie 4 - odpalamy z wykorzystaniem Executors
+//        Executor e = Executors.newSingleThreadExecutor();
+//        e.execute(new WaitTwoSecondsRunnable());
 //
-//////        zadanie 4 - odpalamy z wykorzystaniem Executors
-////        Executor e = Executors.newSingleThreadExecutor();
-////        e.execute(new WaitTwoSecondsRunnable());
-////
-////        Callable<String> callable = () -> {
-////            Thread.sleep(1000);
-////            return "Working again!";
-////        };
-////
-////        ExecutorService es = Executors.newSingleThreadExecutor();
-////        Future<String> result = es.submit(callable);
-////
-////        String resultFinally;
-////        try {
-////            resultFinally = result.get();
-////
-////            System.out.println("Received from future: \"" + resultFinally + "\"");
-////        } catch (InterruptedException ex) {
-////            ex.printStackTrace();
-////        } catch (ExecutionException ex) {
-////            ex.printStackTrace();
-////        }
+//        Callable<String> callable = () -> {
+//            Thread.sleep(1000);
+//            return "Working again!";
+//        };
+//
+//        try (ExecutorService es = Executors.newSingleThreadExecutor()) {
+//            Future<String> result = es.submit(callable);
+//
+//            String resultFinally;
+//            resultFinally = result.get();
+//
+//            System.out.println("Received from future: \"" + resultFinally + "\"");
+//        } catch (InterruptedException ex) {
+//            ex.printStackTrace();
+//        } catch (ExecutionException ex) {
+//            ex.printStackTrace();
+//        }
 //
 //        MyCollections.show();
 //    }

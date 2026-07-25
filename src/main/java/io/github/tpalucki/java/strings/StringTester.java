@@ -2,8 +2,7 @@ package io.github.tpalucki.java.strings;
 
 public class StringTester {
 
-    public static void main(String[] args) {
-
+    static void main(String[] args) {
         "".isBlank();
         "".isEmpty();
 
@@ -21,5 +20,13 @@ public class StringTester {
 
         "asdasdas".lines();
 
+        var multiLineText = """
+                -------
+                This is multi line string
+                And here we go with another line
+                -------
+                """.trim();
+
+        IO.print(multiLineText);
     }
 }

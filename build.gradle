@@ -16,6 +16,20 @@ repositories {
     mavenCentral()
 }
 
+// 1. Enable preview for Java compilation tasks
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs += '--enable-preview'
+}
+// 2. Enable preview for application execution tasks
+tasks.withType(JavaExec).configureEach {
+    jvmArgs += '--enable-preview'
+}
+// 3. Enable preview for JUnit / Test tasks
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+    jvmArgs += '--enable-preview'
+}
+
 dependencies {
 //    implementation 'org.springframework.boot:spring-boot-starter'
 //    testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -27,6 +41,6 @@ dependencies {
     testImplementation 'org.mockito:mockito-core:5.11.0'
 }
 
-tasks.named('test') {
-    useJUnitPlatform()
-}
+//tasks.named('test') {
+//    useJUnitPlatform()
+//}
