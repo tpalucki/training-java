@@ -10,7 +10,7 @@ class HowToMeasureExecutionTime {
         Thread.sleep(5000);
 
         Instant end = Instant.now();
-        System.out.println("Time spent on execution: " + Duration.between(start, end).toMillis());
+        IO.println("Time spent on execution: " + Duration.between(start, end).toMillis());
     }
 
 }
