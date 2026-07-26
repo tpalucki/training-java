@@ -1,4 +1,4 @@
-package io.github.tpalucki.fsm;
+package io.github.tpalucki.datastructures.fsm;
 
 public class MyFiniteStateMachine implements FiniteStateMachine {
 

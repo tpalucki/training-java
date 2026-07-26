@@ -13,7 +13,7 @@ public class ExceptionsSample {
         if (new Random().nextBoolean())
             throw new MyCheckedException();
         /**
-         * Unchedcked excepotion doesn't have to be declared
+         * Unchecked exception doesn't have to be declared
          */
         throw new MyUncheckedException();
     }

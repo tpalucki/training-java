@@ -1,11 +1,11 @@
-package io.github.tpalucki.measurement;
+package io.github.tpalucki.others.measurement;
 
 import java.time.Duration;
 import java.time.Instant;
 
-class HowToMeasureExecutionTime {
+public class HowToMeasureExecutionTime {
 
-    void doSth() throws InterruptedException {
+    public void doSth() throws InterruptedException {
         Instant start = Instant.now();
         Thread.sleep(5000);
 

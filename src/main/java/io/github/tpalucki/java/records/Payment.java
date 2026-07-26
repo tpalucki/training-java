@@ -17,7 +17,7 @@ public record Payment(Long id,
                String fromAccount,
                String toAccount) {
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         var paymentRecord = new Payment(1L, BigDecimal.TEN, "Account A", "Account B");
 
         System.out.println("record.toString = " + paymentRecord);

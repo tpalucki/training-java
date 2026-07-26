@@ -1,5 +1,8 @@
 package io.github.tpalucki.fsm;
 
+import io.github.tpalucki.datastructures.fsm.BaseStates;
+import io.github.tpalucki.datastructures.fsm.FiniteStateMachine;
+import io.github.tpalucki.datastructures.fsm.MyFiniteStateMachine;
 import org.junit.jupiter.api.Test;
 
 class FiniteStateMachineTest {

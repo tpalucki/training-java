@@ -8,6 +8,7 @@ import java.io.*;
  * Jest to tzw Marker interface
  */
 public class SerializablePerson implements java.io.Serializable {
+    // jesli nie ma to przy probie serializacji: java.io.NotSerializableException
 
     // required
     private String name;
