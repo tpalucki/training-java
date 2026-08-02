@@ -47,12 +47,14 @@ public class LambdaUsage {
         new Random()
                 .longs(5)
                 .filter(item -> item > 100L)
-                .forEachOrdered(System.out::println);
-        System.out.println(" ");
-        new Random()
+                .forEachOrdered(IO::println);
+        IO.println(" ");
+
+        long result = new Random()
                 .longs(5)
                 .filter(item -> item > 100L)
-                .peek(System.out::println)
+                .peek(IO::println)
+                .filter(filterAbove100L)
                 .limit(10)
                 .count();
 
