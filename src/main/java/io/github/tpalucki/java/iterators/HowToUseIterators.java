@@ -65,7 +65,7 @@ public class HowToUseIterators {
     }
 
     private static void failSafeIterator() {
-        Map<String, Integer> sharedMap = new ConcurrentHashMap<String, Integer>();
+        Map<String, Integer> sharedMap = new ConcurrentHashMap<>();
         sharedMap.put("First", 10);
         sharedMap.put("Second", 20);
         sharedMap.put("Third", 30);

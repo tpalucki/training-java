@@ -1,4 +1,4 @@
-package io.github.tpalucki.java.innerclasses;
+package io.github.tpalucki.java.static_classes;
 
 public abstract class AbstractClass {
 
@@ -17,9 +17,10 @@ public abstract class AbstractClass {
 
     }
 
-    void localVariablesInitialization() { // local variables have no default values so you have to init them before use.
+    // local variables have no default values so you have to init them before use.
+    void localVariablesInitialization() {
 //        int defaultMethod;
-//        System.out.println("defaultMethod = " + defaultMethod);
+//        IO.println("defaultMethod = " + defaultMethod);
     }
 
     void startThread() {
