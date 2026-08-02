@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 
 public class ListOperationsWithLambdas {
 
-    public static void main(String[] args) {
+    static void main() {
         // 1 - SORTOWANIE LIST
         // UWAGA - wywali sie bo List.of - zwraca Immutable List
 //        Collections.sort(List.of(1,3,2,10,1,3), Comparator.naturalOrder()); // wywali się z java.lang.UnsupporotedOperationException
@@ -16,7 +16,7 @@ public class ListOperationsWithLambdas {
 
         List<Integer> l = new LinkedList<>(Arrays.asList(2, 1, 3, 1, 14, 5, 2, 6));
         l.sort(Comparator.naturalOrder());
-        out("Natural order: " + l.toString());
+        out("Natural order: " + l);
 
         // 2 - reverse order using comparator
         // List. - zwaraca niemutowalne kolekcje
@@ -24,7 +24,7 @@ public class ListOperationsWithLambdas {
         List<String> mutableList = new ArrayList<>(16);
 
         Collections.sort(l, Comparator.reverseOrder());
-        out("Reverse order: " + l.toString());
+        out("Reverse order: " + l);
 
         // 3 - reverse order uzywajac lambdy
         l.sort((a, b) -> Integer.compare(a, b));
@@ -33,6 +33,7 @@ public class ListOperationsWithLambdas {
         // 4 - Analiza pakietu java.util.function
         // Tworzymy funkcje z uzyciem BinaryOperator (BiFunkcja ktora ma 2 arhumenty tego samego typu i zwraca ten sam typ)
         BinaryOperator<String> binaryFunc = (String a, String b) -> a + b;
+        BinaryOperator<Integer> binaryFunc2 = (Integer a, Integer b) -> a * b;
         out(binaryFunc.apply("Tomek, Romek ", "i Atomek"));
 
 
@@ -49,7 +50,7 @@ public class ListOperationsWithLambdas {
         };
 
         // 5 - Functional interface - jest to interfejs z tylko jedna metodą abstrakcyjna
-        // dzieki temu mozemy utworzyc instance jak ponizej - i to bez wolania nazwy metodi ani nic takiego.
+        // dzieki temu mozemy utworzyc instance jak ponizej - i to bez wolania nazwy metody ani nic takiego.
         // Po prostu piszemy labde ktora realizuje ten interfejs i tyle.
         MyFunctionalInterface myFunctionalInterface = () -> {
         };
@@ -60,6 +61,9 @@ public class ListOperationsWithLambdas {
             t.throwException();
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            // always performe
+            // except when Runtime.exit()
         }
 //
 //        try {

@@ -23,7 +23,7 @@ public class StackImpl implements Stack {
     /**
      * We ensure that pop is not leaking by nulling reference to element we pop
      *
-     * @return
+     * @return removed top element
      */
     @Override
     public Object pop() throws EmptyStackException {

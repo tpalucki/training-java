@@ -5,10 +5,10 @@ import java.util.function.*;
 
 public class LambdaUsage {
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         // dostarczamy implementację tej jednej metody abstrakcyjnej
         MyFunctionalInterface myIf = () -> {
-            System.out.println("implementation provided in lambda assignment");
+            IO.println("implementation provided in lambda assignment");
         };
 
         // wywołujemy

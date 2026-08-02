@@ -30,7 +30,7 @@ public class SerializablePerson implements java.io.Serializable {
                 '}';
     }
 
-    static void main(String[] args) {
+    static void main() {
         SerializablePerson person = new SerializablePerson("Tomasz", "Pałucki", 28);
         FileOutputStream fileOutputStream;
         try {
@@ -44,13 +44,13 @@ public class SerializablePerson implements java.io.Serializable {
 
         FileInputStream in;
         try {
-            System.out.println("Deserializing object from file.");
+            IO.println("Deserializing object from file.");
 
             in = new FileInputStream("./object.ser");
             ObjectInputStream objectIn = new ObjectInputStream(in);
             SerializablePerson deserialized = (SerializablePerson) objectIn.readObject();
 
-            System.out.println("Deserialized file: " + deserialized);
+            IO.println("Deserialized file: " + deserialized);
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
