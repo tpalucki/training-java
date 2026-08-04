@@ -57,6 +57,10 @@ public class Trie implements PrefixSearch, PrefixInsert {
         public void setValue(String value) {
             this.value = value;
         }
+
+        public boolean isWord() {
+            return false; // TODO implement it
+        }
     }
 
     sealed abstract class TrieNode implements PrefixInsert, PrefixSearch permits TrieRootNode, TrieChildNode {
@@ -84,7 +88,7 @@ public class Trie implements PrefixSearch, PrefixInsert {
         public Set<String> search(String prefix) {
             requireNonNull(prefix, "prefix cannot be null");
             if (prefix.isEmpty()) {
-                return Set.of("");
+                return collectAllWords();  // Collect all subtrees, not just ""
             }
 
             var firstLetter = prefix.substring(0, 1).toLowerCase();
@@ -93,10 +97,20 @@ public class Trie implements PrefixSearch, PrefixInsert {
                 return Set.of();
             }
             TrieNode child = children.get(firstLetter);
-            return child.search(prefix.substring(1))
-                    .stream()
-                    .map(searchResultPrefix -> firstLetter + searchResultPrefix)
-                    .collect(Collectors.toSet());
+            return child.search(prefix.substring(1)).stream().map(searchResultPrefix -> firstLetter + searchResultPrefix).collect(Collectors.toSet());
+        }
+
+        private Set<String> collectAllWords() {
+            Set<String> results = new java.util.HashSet<>();
+            if (this instanceof TrieChildNode childNode && childNode.isWord()) {
+                results.add("");
+            }
+            for (var entry : children.entrySet()) {
+                var key = entry.getKey();
+                var node = entry.getValue();
+                node.collectAllWords().stream().map(word -> key + word).forEach(results::add);
+            }
+            return results;
         }
     }
 }

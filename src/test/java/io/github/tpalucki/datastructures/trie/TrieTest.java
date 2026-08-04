@@ -44,6 +44,7 @@ class TrieTest {
             trie.insert("cat");
             trie.insert("caterpillar");
 
+            trie.insert("ace");
             trie.insert("abba");
             trie.insert("abacus");
             trie.insert("abel");
