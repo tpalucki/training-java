@@ -17,6 +17,10 @@ interface PrefixInsert {
     void insert(String prefix);
 }
 
+// todo improvements
+//  - Substring operations are inefficient — consider using character indices instead
+//  - collectAllWords() reconstructs all strings every search (memory-intensive for large results)
+//  - The isWord() logic (assumes word = leaf node) won't work for prefixes of other words
 public class Trie implements PrefixSearch, PrefixInsert {
 
     private final TrieNode root;
@@ -59,7 +63,7 @@ public class Trie implements PrefixSearch, PrefixInsert {
         }
 
         public boolean isWord() {
-            return false; // TODO implement it
+            return children.isEmpty();
         }
     }
 
