@@ -41,9 +41,7 @@ public class HeadBufferedList implements IntegerStore {
     public void remove(int n) {
         if (n < head.size()) {
             head.remove(n);
-        }
-        if (n >= head.size() &&
-                n < head.size() + tail.size()) {
+        } else if (n < head.size() + tail.size()) {
             tail.remove(n - head.size());
         }
     }
