@@ -1,4 +1,4 @@
-package io.github.tpalucki.vistulo;
+package io.github.tpalucki.interview.vistulo;
 
 import java.util.LinkedList;
 import java.util.List;

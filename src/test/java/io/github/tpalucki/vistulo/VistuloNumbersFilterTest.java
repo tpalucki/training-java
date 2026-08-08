@@ -1,5 +1,6 @@
 package io.github.tpalucki.vistulo;
 
+import io.github.tpalucki.interview.vistulo.VistuloNumbersFilter;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
